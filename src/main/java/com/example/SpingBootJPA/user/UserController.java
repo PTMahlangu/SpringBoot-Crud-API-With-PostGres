@@ -14,20 +14,27 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping
     public List<User> getStudent(){
+
         return userService.getUser();
     }
+
     @PostMapping
-    public void registerUser(){
-
+    public void registerUser(@RequestBody User user){
+        userService.addUser(user);
     }
-    @DeleteMapping
-    public  void deleteUser(){
 
+    @DeleteMapping(path = "{userId}")
+    public  void deleteUser(@PathVariable("userId") Long id){
+        userService.deleteUser(id);
     }
-    @PutMapping
-    public void updateUser(){
-
+    @PutMapping(path ="{userId}" )
+    public void updateUser(@PathVariable("userId") Long userId ,
+                           @RequestParam(required = false) String name,
+                           @RequestParam(required = false) String email
+                           ){
+        userService.updateUser(userId,name,email);
     }
 }

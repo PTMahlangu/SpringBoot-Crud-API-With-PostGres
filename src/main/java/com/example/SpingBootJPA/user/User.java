@@ -11,7 +11,7 @@ public class User {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
-            sequenceName = "userr_sequence",
+            sequenceName = "user_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
